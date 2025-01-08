@@ -218,7 +218,9 @@ const urlParams = new URLSearchParams(window.location.search);
 const xeokitVersion = urlParams.get('xeokit') ?? 'latest';
 const xeokitUrl = `https://cdn.jsdelivr.net/npm/@xeokit/xeokit-sdk@${xeokitVersion}/dist/xeokit-sdk.min.es.js`
 
-const xeokitModelUrl = urlParams.get('url') ?? 'https://xeokit.github.io/xeokit-sdk/assets/models/xkt/v8/ifc/Schependomlaan.ifc.xkt';
+let xeokitModelUrl = urlParams.get('url') ?? 'https://xeokit.github.io/xeokit-sdk/assets/models/xkt/v8/ifc/Schependomlaan.ifc.xkt';
+xeokitModelUrl = decodeURIComponent(xeokitModelUrl);
+
 const xeokitModelType = urlParams.get('type') ?? 'xkt';
 
 const xeokitRotation = urlParams.get('rotation') ? urlParams.get('rotation').split(',').map(v => parseInt(v)) : [-90, 0, 0];
