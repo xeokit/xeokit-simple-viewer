@@ -225,7 +225,7 @@ const xeokitModelType = urlParams.get('type') ?? 'xkt';
 
 const xeokitRotation = urlParams.get('rotation') ? urlParams.get('rotation').split(',').map(v => parseInt(v)) : [-90, 0, 0];
 const xeokitBoundingBox = urlParams.get('boundingBox') ? urlParams.get('boundingBox') === '1' || urlParams.get('boundingBox') === 'true' : false;
-const xeokitEdges = urlParams.get('edges') ? urlParams.get('edges') === '1' || urlParams.get('edges') === 'true' : true;
+const xeokitEdges = urlParams.get('edges') ? urlParams.get('edges') === '1' || urlParams.get('edges') === 'true' : false;
 const xeokitColorTextureEnabled = urlParams.get('colorTextureEnabled') ? urlParams.get('colorTextureEnabled') === '1' || urlParams.get('colorTextureEnabled') === 'true' : true;
 const xeokitDtxEnabled = urlParams.get('dtxEnabled') ? urlParams.get('dtxEnabled') === '1' || urlParams.get('dtxEnabled') === 'true' : true;
 const xeokitTreeViewEnabled = urlParams.get('treeViewEnabled') ? urlParams.get('treeViewEnabled') === '1' || urlParams.get('treeViewEnabled') === 'true' : true;
