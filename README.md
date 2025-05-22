@@ -38,3 +38,4 @@ Query parameters:
 - **saoEnabled** - enable SAO mode (Boolean) default true
 - **fp64** - 64bit floating point precision for Point Cloud scans (Boolean) default true
 - **cacheBuster** - enable cache buster mode (Boolean) default false (This mode adds timestamp to model url)
+- **fastNavEnabled** - enable/disable FastNavPlugin (Boolean) default true
