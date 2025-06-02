@@ -423,38 +423,7 @@
         this.edges = xeokitEdges ? true : false;
     }();
 
-    const pbrParams = new function () {
-        this.pbrEnabled = viewer.scene.pbrEnabled;
-    }();
-
-    const saoParams = new function () {
-        const sao = viewer.scene.sao;
-        const camera = viewer.scene.camera;
-        this.enabled = sao.enabled;
-        this.kernelRadius = sao.kernelRadius;
-        this.intensity = sao.intensity;
-        this.bias = sao.bias;
-        this.scale = sao.scale;
-        this.minResolution = sao.minResolution;
-        this.numSamples = sao.numSamples;
-        this.blendFactor = sao.blendFactor;
-        this.blendCutoff = sao.blendCutoff;
-        this.blur = sao.blur;
-        this.perspective = (camera.projection === "perspective");
-        this.far = camera.perspective.far;
-        this.fov = camera.perspective.fov;
-    }();
-
-    const fastNavParams = new function () {
-        this.hidePBR = fastNavPlugin.hidePBR;
-        this.hideSAO = fastNavPlugin.hideSAO;
-        this.hideEdges = fastNavPlugin.hideEdges;
-        this.hideTransparentObjects = fastNavPlugin.hideTransparentObjects;
-        this.scaleCanvasResolution = fastNavPlugin.scaleCanvasResolution;
-        this.scaleCanvasResolutionFactor = fastNavPlugin.scaleCanvasResolutionFactor;
-        this.delayBeforeRestore = fastNavPlugin.delayBeforeRestore;
-        this.delayBeforeRestoreSeconds = fastNavPlugin.delayBeforeRestoreSeconds;
-    }();
+    
     // stats
     const script = document.createElement('script');
 
@@ -757,6 +726,39 @@
     });
 
     // FastNavPlugin
+    const pbrParams = new function () {
+        this.pbrEnabled = viewer.scene.pbrEnabled;
+    }();
+
+    const saoParams = new function () {
+        const sao = viewer.scene.sao;
+        const camera = viewer.scene.camera;
+        this.enabled = sao.enabled;
+        this.kernelRadius = sao.kernelRadius;
+        this.intensity = sao.intensity;
+        this.bias = sao.bias;
+        this.scale = sao.scale;
+        this.minResolution = sao.minResolution;
+        this.numSamples = sao.numSamples;
+        this.blendFactor = sao.blendFactor;
+        this.blendCutoff = sao.blendCutoff;
+        this.blur = sao.blur;
+        this.perspective = (camera.projection === "perspective");
+        this.far = camera.perspective.far;
+        this.fov = camera.perspective.fov;
+    }();
+
+    const fastNavParams = new function () {
+        this.hidePBR = fastNavPlugin.hidePBR;
+        this.hideSAO = fastNavPlugin.hideSAO;
+        this.hideEdges = fastNavPlugin.hideEdges;
+        this.hideTransparentObjects = fastNavPlugin.hideTransparentObjects;
+        this.scaleCanvasResolution = fastNavPlugin.scaleCanvasResolution;
+        this.scaleCanvasResolutionFactor = fastNavPlugin.scaleCanvasResolutionFactor;
+        this.delayBeforeRestore = fastNavPlugin.delayBeforeRestore;
+        this.delayBeforeRestoreSeconds = fastNavPlugin.delayBeforeRestoreSeconds;
+    }();
+    
     if (xeokitFastNavPluginEnabled) {
         document.getElementById("info-button-label").style.display = "block";
 
