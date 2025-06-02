@@ -419,6 +419,42 @@
     const xeokitCacheBuster = urlParams.get('cacheBuster') ? urlParams.get('cacheBuster') === '1' || urlParams.get('cacheBuster') === 'true' : false;
     const xeokitFastNavPluginEnabled = urlParams.get('fastNavEnabled') ? urlParams.get('fastNavEnabled') === '1' || urlParams.get('fastNavEnabled') === 'true' : true;
 
+    const edgeParams = new function () {
+        this.edges = xeokitEdges ? true : false;
+    }();
+
+    const pbrParams = new function () {
+        this.pbrEnabled = viewer.scene.pbrEnabled;
+    }();
+
+    const saoParams = new function () {
+        const sao = viewer.scene.sao;
+        const camera = viewer.scene.camera;
+        this.enabled = sao.enabled;
+        this.kernelRadius = sao.kernelRadius;
+        this.intensity = sao.intensity;
+        this.bias = sao.bias;
+        this.scale = sao.scale;
+        this.minResolution = sao.minResolution;
+        this.numSamples = sao.numSamples;
+        this.blendFactor = sao.blendFactor;
+        this.blendCutoff = sao.blendCutoff;
+        this.blur = sao.blur;
+        this.perspective = (camera.projection === "perspective");
+        this.far = camera.perspective.far;
+        this.fov = camera.perspective.fov;
+    }();
+
+    const fastNavParams = new function () {
+        this.hidePBR = fastNavPlugin.hidePBR;
+        this.hideSAO = fastNavPlugin.hideSAO;
+        this.hideEdges = fastNavPlugin.hideEdges;
+        this.hideTransparentObjects = fastNavPlugin.hideTransparentObjects;
+        this.scaleCanvasResolution = fastNavPlugin.scaleCanvasResolution;
+        this.scaleCanvasResolutionFactor = fastNavPlugin.scaleCanvasResolutionFactor;
+        this.delayBeforeRestore = fastNavPlugin.delayBeforeRestore;
+        this.delayBeforeRestoreSeconds = fastNavPlugin.delayBeforeRestoreSeconds;
+    }();
     // stats
     const script = document.createElement('script');
 
@@ -615,7 +651,7 @@
         sceneModel = loader.load({
             id: "myModel",
             src: xeokitModelUrl,
-            edges: xeokitEdges,
+            edges: edgeParams.edges,
             backfaces: xeokitBackfaces,
             dtxEnabled: xeokitDtxEnabled,
             objectDefaults: {
@@ -651,7 +687,7 @@
         sceneModel = loader.load({
             id: "myModel",
             src: xeokitModelUrl,
-            edges: xeokitEdges
+            edges: edgeParams.edges
         });
     } else if (xeokitModelType === 'stl') {
         loader = new STLLoaderPlugin(viewer, {
@@ -678,7 +714,7 @@
             colorTextureEnabled: xeokitColorTextureEnabled,
             autoMetaModel: true,
             saoEnabled: xeokitSaoEnabled,
-            edges: xeokitEdges,
+            edges: edgeParams.edges,
             dtxEnabled: xeokitDtxEnabled
         });
     } else if (xeokitModelType === 'bim') {
@@ -692,7 +728,7 @@
             id: "myModel",
             src: xeokitModelUrl,
             saoEnabled: xeokitSaoEnabled,
-            edges: xeokitEdges,
+            edges: edgeParams.edges,
             rotation: xeokitRotation
         });
     }
@@ -769,44 +805,6 @@
         //------------------------------------------------------------------------------------------------------------------
         // GUI to play with FastNavPlugin, SAO and camera configurations
         //------------------------------------------------------------------------------------------------------------------
-
-        const edgeParams = new function () {
-            this.edges = viewer.scene.edgeMaterial.edges;
-        }();
-
-        const pbrParams = new function () {
-            this.pbrEnabled = viewer.scene.pbrEnabled;
-        }();
-
-        const saoParams = new function () {
-            const sao = viewer.scene.sao;
-            const camera = viewer.scene.camera;
-            this.enabled = sao.enabled;
-            this.kernelRadius = sao.kernelRadius;
-            this.intensity = sao.intensity;
-            this.bias = sao.bias;
-            this.scale = sao.scale;
-            this.minResolution = sao.minResolution;
-            this.numSamples = sao.numSamples;
-            this.blendFactor = sao.blendFactor;
-            this.blendCutoff = sao.blendCutoff;
-            this.blur = sao.blur;
-            this.perspective = (camera.projection === "perspective");
-            this.far = camera.perspective.far;
-            this.fov = camera.perspective.fov;
-        }();
-
-        const fastNavParams = new function () {
-            this.hidePBR = fastNavPlugin.hidePBR;
-            this.hideSAO = fastNavPlugin.hideSAO;
-            this.hideEdges = fastNavPlugin.hideEdges;
-            this.hideTransparentObjects = fastNavPlugin.hideTransparentObjects;
-            this.scaleCanvasResolution = fastNavPlugin.scaleCanvasResolution;
-            this.scaleCanvasResolutionFactor = fastNavPlugin.scaleCanvasResolutionFactor;
-            this.delayBeforeRestore = fastNavPlugin.delayBeforeRestore;
-            this.delayBeforeRestoreSeconds = fastNavPlugin.delayBeforeRestoreSeconds;
-        }();
-
         const update = function () {
 
             const sao = viewer.scene.sao;
