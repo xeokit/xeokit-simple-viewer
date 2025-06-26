@@ -556,7 +556,7 @@
     viewer.cameraControl.on('picked', (event) => {
         if (!event.entity) return;
 
-        const metaObject = viewer.metaScene.metaObjects[objectId];
+        const metaObject = viewer.metaScene.metaObjects[event.entity.id];
 
         console.log({ entity: event.entity, metaObject });
     });
