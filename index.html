@@ -553,6 +553,14 @@
     viewer.scene.edgeMaterial.edgeAlpha = 0.3;
     viewer.scene.edgeMaterial.edgeColor = [0, 0, 0];
 
+    viewer.cameraControl.on('picked', (event) => {
+        if (!event.entity) return;
+
+        const metaObject = viewer.metaScene.metaObjects[objectId];
+
+        console.log({ entity: event.entity, metaObject });
+    });
+
     const getCanvasPosFromEvent = function (event) {
         const canvasPos = [];
         if (!event) {
