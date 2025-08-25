@@ -407,14 +407,14 @@
 
     const xeokitRotation = urlParams.get('rotation') ? urlParams.get('rotation').split(',').map(v => parseInt(v)) : [-90, 0, 0];
     const xeokitBoundingBox = urlParams.get('boundingBox') ? urlParams.get('boundingBox') === '1' || urlParams.get('boundingBox') === 'true' : false;
-    const xeokitEdges = urlParams.get('edges') ? urlParams.get('edges') === '1' || urlParams.get('edges') === 'true' : false;
+    const xeokitEdges = urlParams.get('edges') ? urlParams.get('edges') === '1' || urlParams.get('edges') === 'true' : true;
     const xeokitColorTextureEnabled = urlParams.get('colorTextureEnabled') ? urlParams.get('colorTextureEnabled') === '1' || urlParams.get('colorTextureEnabled') === 'true' : true;
     const xeokitDtxEnabled = urlParams.get('dtxEnabled') ? urlParams.get('dtxEnabled') === '1' || urlParams.get('dtxEnabled') === 'true' : true;
     const xeokitTreeViewEnabled = urlParams.get('treeViewEnabled') ? urlParams.get('treeViewEnabled') === '1' || urlParams.get('treeViewEnabled') === 'true' : true;
     const xeokitTransparent = urlParams.get('transparent') ? urlParams.get('transparent') === '1' || urlParams.get('transparent') === 'true' : true;
     const xeokitBackfaces = urlParams.get('backfaces') ? urlParams.get('backfaces') === '1' || urlParams.get('backfaces') === 'true' : true;
     const xeokitTreeViewHierarchy = urlParams.get('treeViewHierarchy') ? urlParams.get('treeViewHierarchy') : "containment"; // containment | types | storeys
-    const xeokitSaoEnabled = urlParams.get('saoEnabled') ? urlParams.get('saoEnabled') === '1' || urlParams.get('saoEnabled') === 'true' : true;
+    const xeokitSaoEnabled = urlParams.get('saoEnabled') ? urlParams.get('saoEnabled') === '1' || urlParams.get('saoEnabled') === 'true' : false;
     const xeokitFP64 = urlParams.get('fp64') ? urlParams.get('fp64') === '1' || urlParams.get('fp64') === 'true' : true;
     const xeokitCacheBuster = urlParams.get('cacheBuster') ? urlParams.get('cacheBuster') === '1' || urlParams.get('cacheBuster') === 'true' : false;
     const xeokitFastNavPluginEnabled = urlParams.get('fastNavEnabled') ? urlParams.get('fastNavEnabled') === '1' || urlParams.get('fastNavEnabled') === 'true' : true;
@@ -423,7 +423,7 @@
         this.edges = xeokitEdges ? true : false;
     }();
 
-    
+
     // stats
     const script = document.createElement('script');
 
@@ -542,7 +542,7 @@
     viewer.cameraControl.navMode = "orbit";
     viewer.cameraControl.followPointer = true;
 
-    viewer.scene.sao.enabled = true; // Higher-quality SAO settings
+    viewer.scene.sao.enabled = xeokitSaoEnabled; // Higher-quality SAO settings
     viewer.scene.sao.numSamples = 60;
     viewer.scene.sao.kernelRadius = 170;
 
@@ -629,8 +629,10 @@
             id: "myModel",
             src: xeokitModelUrl,
             edges: edgeParams.edges,
+            saoEnabled: xeokitSaoEnabled,
             backfaces: xeokitBackfaces,
             dtxEnabled: xeokitDtxEnabled,
+
             objectDefaults: {
                 "IfcPlate": {
                     opacity: 0.3 // These are used as windows in this model - make transparent
@@ -785,7 +787,7 @@
         const pbrParams = new function () {
             this.pbrEnabled = viewer.scene.pbrEnabled;
         }();
-    
+
         const saoParams = new function () {
             const sao = viewer.scene.sao;
             const camera = viewer.scene.camera;
@@ -803,7 +805,7 @@
             this.far = camera.perspective.far;
             this.fov = camera.perspective.fov;
         }();
-    
+
         const fastNavParams = new function () {
             this.hidePBR = fastNavPlugin.hidePBR;
             this.hideSAO = fastNavPlugin.hideSAO;
