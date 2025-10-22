@@ -403,7 +403,7 @@
     let xeokitModelUrl = urlParams.get('url') ?? 'https://xeokit.github.io/xeokit-sdk/assets/models/xkt/v8/ifc/Schependomlaan.ifc.xkt';
     xeokitModelUrl = decodeURIComponent(xeokitModelUrl);
 
-    let xeokitMetaModelUrl = urlParams.get('metaModelUrl') ? decodeURIComponent(urlParams.get('metaModelUrl')) : null;
+    let xeokitMetaModelUrl = urlParams.get('metaModelUrl') ? decodeURIComponent(urlParams.get('metaModelUrl')) : false;
 
     const xeokitModelType = urlParams.get('type') ?? 'xkt';
 
@@ -695,7 +695,7 @@
             src: xeokitModelUrl,
             metaModelSrc: xeokitMetaModelUrl,
             colorTextureEnabled: xeokitColorTextureEnabled,
-            autoMetaModel: true,
+            autoMetaModel: xeokitMetaModelUrl ? false : true,
             saoEnabled: xeokitSaoEnabled,
             edges: edgeParams.edges,
             dtxEnabled: xeokitDtxEnabled
