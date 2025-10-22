@@ -403,6 +403,8 @@
     let xeokitModelUrl = urlParams.get('url') ?? 'https://xeokit.github.io/xeokit-sdk/assets/models/xkt/v8/ifc/Schependomlaan.ifc.xkt';
     xeokitModelUrl = decodeURIComponent(xeokitModelUrl);
 
+    let xeokitMetaModelUrl = urlParams.get('metaModelUrl') ? decodeURIComponent(urlParams.get('metaModelUrl')) : null;
+
     const xeokitModelType = urlParams.get('type') ?? 'xkt';
 
     const xeokitRotation = urlParams.get('rotation') ? urlParams.get('rotation').split(',').map(v => parseInt(v)) : [-90, 0, 0];
@@ -628,6 +630,7 @@
         sceneModel = loader.load({
             id: "myModel",
             src: xeokitModelUrl,
+            metaModelSrc: xeokitMetaModelUrl,
             edges: edgeParams.edges,
             saoEnabled: xeokitSaoEnabled,
             backfaces: xeokitBackfaces,
@@ -690,6 +693,7 @@
         sceneModel = loader.load({
             id: "myModel",
             src: xeokitModelUrl,
+            metaModelSrc: xeokitMetaModelUrl,
             colorTextureEnabled: xeokitColorTextureEnabled,
             autoMetaModel: true,
             saoEnabled: xeokitSaoEnabled,
@@ -706,6 +710,7 @@
         sceneModel = loader.load({
             id: "myModel",
             src: xeokitModelUrl,
+            metaModelSrc: xeokitMetaModelUrl,
             saoEnabled: xeokitSaoEnabled,
             edges: edgeParams.edges,
             rotation: xeokitRotation

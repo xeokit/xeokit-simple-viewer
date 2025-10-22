@@ -4,6 +4,8 @@ Examples:
 
 XKT
 https://xeokit.github.io/xeokit-simple-viewer/?xeokit=latest&type=xkt&url=https://xeokit.github.io/xeokit-sdk/assets/models/xkt/v8/ifc/Schependomlaan.ifc.xkt
+and with metadata:
+https://xeokit.github.io/xeokit-simple-viewer/?xeokit=latest&type=xkt&url=https://xeokit.github.io/xeokit-sdk/assets/models/xkt/v7/Schependomlaan/Schependomlaan.xkt&metaModelUrl=https://xeokit.github.io/xeokit-sdk/assets/models/xkt/v7/Schependomlaan/Schependomlaan.json
 
 GLB/GLTF
 https://xeokit.github.io/xeokit-simple-viewer/?xeokit=2.6.61&type=gltf&url=https://xeokit.github.io/xeokit-sdk/assets/models/gltf/MAP/MAP.glb
@@ -25,6 +27,7 @@ Query parameters:
 
 - **xeokit** - Which xeokit-sdk version to use, latest or xeokit version number (https://cdn.jsdelivr.net/npm/@xeokit/xeokit-sdk@2.6.61/)
 - **url** - address url to model
+- **metaModelUrl** - optional address url to metadata model (JSON format)
 - **type** - type of model: xkt, las, laz, obj, stl, glb, gltf, bim
 - **rotation** - default rotation (x,y,z) default -90, 0, 0
 - **boundingBox** - show model bounding box (Boolean)
